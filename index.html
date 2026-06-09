@@ -38,6 +38,8 @@ body{font-family:system-ui,sans-serif;background:#0f0f0f;color:#fff;padding:20px
 .btn-del{background:#333;border:none;color:#aaa;width:32px;height:32px;border-radius:8px;font-size:16px;cursor:pointer;flex-shrink:0}
 .btn-del.confirmar{background:#dc2626;color:#fff}
 .vazio{text-align:center;color:#444;padding:40px 0;font-size:15px}
+.assinatura{text-align:center;color:#444;font-size:12px;padding:30px 0 10px;letter-spacing:0.5px}
+.assinatura span{color:#667eea;font-weight:600}
 </style>
 </head>
 <body>
@@ -57,6 +59,7 @@ body{font-family:system-ui,sans-serif;background:#0f0f0f;color:#fff;padding:20px
   </div>
   <button class="btn-lancar" onclick="lancar()">Lançar</button>
   <div class="lista" id="lista"></div>
+  <div class="assinatura">feito por <span>Gustavo Dantas</span> 💜</div>
 </div>
 <script>
 let tipo='entrada',saldo=0,itens=[];
