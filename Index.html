@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Conta</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0f0f0f;color:#fff;padding:20px}
+.container{max-width:500px;margin:0 auto}
+.saldo-box{background:linear-gradient(135deg,#667eea,#764ba2);padding:28px;border-radius:16px;text-align:center;margin-bottom:24px;cursor:pointer}
+.saldo-label{font-size:13px;opacity:.8;margin-bottom:8px}
+.saldo-valor{font-size:42px;font-weight:800}
+.tipo-btns{display:flex;gap:10px;margin-bottom:16px}
+.tipo-btns button{flex:1;padding:12px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;opacity:.5}
+.tipo-btns button.active{opacity:1}
+.btn-entrada{background:#10b981;color:#fff}
+.btn-saida{background:#ef4444;color:#fff}
+.campos{display:flex;gap:8px;margin-bottom:12px}
+.campos input{background:#1a1a1a;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;font-size:14px}
+.campos input::placeholder{color:#555}
+#emoji{width:52px;text-align:center;font-size:20px}
+#descricao{flex:1}
+#valor{width:110px}
+.btn-lancar{width:100%;padding:14px;background:#667eea;border:none;color:#fff;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:24px}
+.lista{display:flex;flex-direction:column;gap:8px}
+.item{background:#1a1a1a;padding:14px;border-radius:10px;display:flex;align-items:center;gap:10px;border-left:4px solid #667eea}
+.item.entrada{border-left-color:#10b981}
+.item.saida{border-left-color:#ef4444}
+.item.confirmar{background:#450a0a}
+.item-emoji{font-size:22px}
+.item-info{flex:1}
+.item-desc{font-size:14px;font-weight:600}
+.item-data{font-size:12px;color:#666;margin-top:2px}
+.item-valor{font-weight:800;font-size:15px}
+.item-valor.entrada{color:#10b981}
+.item-valor.saida{color:#ef4444}
+.btn-del{background:#333;border:none;color:#aaa;width:32px;height:32px;border-radius:8px;font-size:16px;cursor:pointer;flex-shrink:0}
+.btn-del.confirmar{background:#dc2626;color:#fff}
+.vazio{text-align:center;color:#444;padding:40px 0;font-size:15px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="saldo-box" onclick="ajustarSaldo()">
+    <div class="saldo-label">saldo atual — toque pra ajustar</div>
+    <div class="saldo-valor" id="saldo">R$ 0,00</div>
+  </div>
+  <div class="tipo-btns">
+    <button class="btn-entrada active" id="btnEntrada" onclick="setTipo('entrada')">↑ Entrada</button>
+    <button class="btn-saida" id="btnSaida" onclick="setTipo('saida')">↓ Saída</button>
+  </div>
+  <div class="campos">
+    <input type="text" id="emoji" placeholder="😋" maxlength="2">
+    <input type="text" id="descricao" placeholder="O que foi? Ex: marmita">
+    <input type="number" id="valor" placeholder="R$ 0,00" step="0.01">
+  </div>
+  <button class="btn-lancar" onclick="lancar()">Lançar</button>
+  <div class="lista" id="lista"></div>
+</div>
+<script>
+let tipo='entrada',saldo=0,itens=[];
+function salvar(){localStorage.setItem('mc',JSON.stringify({saldo,itens}))}
+function carregar(){const d=localStorage.getItem('mc');if(d){const p=JSON.parse(d);saldo=p.saldo;itens=p.itens}atualizar()}
+function setTipo(t){tipo=t;document.getElementById('btnEntrada').classList.toggle('active',t==='entrada');document.getElementById('btnSaida').classList.toggle('active',t==='saida')}
+function ajustarSaldo(){const v=prompt('Qual o saldo atual da sua conta?',saldo.toFixed(2));if(v!==null&&!isNaN(v)){saldo=parseFloat(v);salvar();atualizar()}}
+function lancar(){
+  const e=document.getElementById('emoji').value||'💰';
+  const d=document.getElementById('descricao').value.trim();
+  const v=parseFloat(document.getElementById('valor').value);
+  if(!d||!v||v<=0){alert('Preenche a descrição e o valor!');return}
+  itens.unshift({id:Date.now(),tipo,emoji:e,desc:d,valor:v,data:new Date().toLocaleDateString('pt-BR'),del:false});
+  saldo+=tipo==='entrada'?v:-v;
+  salvar();atualizar();
+  document.getElementById('emoji').value='';
+  document.getElementById('descricao').value='';
+  document.getElementById('valor').value='';
+}
+function deletar(id){
+  const item=itens.find(i=>i.id===id);
+  if(!item.del){item.del=true}
+  else{saldo+=item.tipo==='entrada'?-item.valor:item.valor;itens=itens.filter(i=>i.id!==id)}
+  salvar();atualizar();
+}
+function atualizar(){
+  document.getElementById('saldo').textContent='R$ '+saldo.toFixed(2);
+  const l=document.getElementById('lista');
+  if(!itens.length){l.innerHTML='<div class="vazio">Nenhum lançamento ainda.<br>Lance o primeiro acima! 👆</div>';return}
+  l.innerHTML=itens.map(i=>`
+    <div class="item ${i.tipo} ${i.del?'confirmar':''}">
+      <div class="item-emoji">${i.emoji}</div>
+      <div class="item-info"><div class="item-desc">${i.desc}</div><div class="item-data">${i.data}</div></div>
+      <div class="item-valor ${i.tipo}">${i.tipo==='entrada'?'+':'-'} R$ ${i.valor.toFixed(2)}</div>
+      <button class="btn-del ${i.del?'confirmar':''}" onclick="deletar(${i.id})">${i.del?'✓':'×'}</button>
+    </div>`).join('');
+}
+carregar();
+</script>
+</body>
+</html>
