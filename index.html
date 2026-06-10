@@ -9,19 +9,12 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padding:0 0 40px}
 .container{max-width:500px;margin:0 auto;padding:0 16px}
-
-/* ABAS */
 .abas{display:flex;background:#0f0f0f;border-bottom:1px solid #1a1a00;position:sticky;top:0;z-index:99}
-.aba{flex:1;padding:16px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:#333;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s}
+.aba{flex:1;padding:14px 4px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;color:#333;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s}
 .aba.ativa{color:#d4af37;border-bottom-color:#d4af37}
-
 .tela{display:none;padding-top:20px}
 .tela.ativa{display:block}
-
-/* TOPO */
 .topo-titulo{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#8a7040;text-transform:uppercase;text-align:center;padding:4px 0 16px}
-
-/* SALDO / LIMITE BOX */
 .hero-box{background:#0f0f0f;border:1px solid #2a2200;border-radius:20px;padding:28px 24px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden}
 .hero-box::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:160px;background:radial-gradient(ellipse,rgba(212,175,55,0.12) 0%,transparent 70%);pointer-events:none}
 .hero-label{font-size:11px;letter-spacing:3px;color:#5a4a20;text-transform:uppercase;margin-bottom:10px;font-weight:600}
@@ -30,8 +23,6 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
 .hero-editar input{background:#0a0a0a;border:1px solid #2a2000;color:#e8d5a0;padding:10px 14px;border-radius:10px;font-size:16px;font-weight:800;width:160px;text-align:center;font-family:'Inter',sans-serif}
 .hero-editar input:focus{outline:none;border-color:#d4af37}
 .hero-editar button{background:linear-gradient(135deg,#f5d060,#d4af37);color:#0a0a0a;border:none;border-radius:10px;padding:10px 16px;font-weight:800;font-size:13px;cursor:pointer}
-
-/* RESUMO */
 .resumo{display:flex;gap:12px;margin-bottom:20px}
 .resumo-card{flex:1;background:#0f0f0f;border-radius:14px;padding:14px;text-align:center;border:1px solid #1a1a1a}
 .resumo-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:600}
@@ -42,52 +33,45 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
 .resumo-card.vermelho .resumo-valor{color:#e25c5c}
 .resumo-card.amarelo .resumo-label{color:#5a4a00}
 .resumo-card.amarelo .resumo-valor{color:#d4af37}
-
-/* BARRA DE USO */
 .barra-box{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:14px;padding:16px;margin-bottom:20px}
 .barra-label{font-size:10px;letter-spacing:2px;color:#3a3020;text-transform:uppercase;font-weight:600;margin-bottom:10px}
 .barra-bg{background:#1a1a1a;border-radius:6px;height:10px}
 .barra-fill{height:10px;border-radius:6px;background:linear-gradient(90deg,#22c97a,#d4af37,#e25c5c);transition:width 0.4s}
 .barra-info{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:#444}
-
-/* FORM */
 .form-box{background:#0f0f0f;border:1px solid #1e1800;border-radius:20px;padding:20px;margin-bottom:20px}
 .tipo-btns{display:flex;gap:8px;margin-bottom:16px}
 .tipo-btns button{flex:1;padding:13px;border:1px solid #1a1a1a;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:1px;background:#0a0a0a;color:#333;transition:all 0.2s;text-transform:uppercase}
 .tipo-btns button.active-entrada{background:#0a2a1a;border-color:#22c97a;color:#22c97a}
 .tipo-btns button.active-saida{background:#2a0a0a;border-color:#e25c5c;color:#e25c5c}
-.campos{display:flex;gap:8px;margin-bottom:12px}
+.campos{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .campos input{background:#0a0a0a;border:1px solid #1e1800;color:#e8d5a0;padding:13px 12px;border-radius:12px;font-size:14px;font-family:'Inter',sans-serif}
 .campos input::placeholder{color:#2a2010}
 .campos input:focus{outline:none;border-color:#d4af37}
-#emoji{width:52px;text-align:center;font-size:20px}
-#cEmoji{width:52px;text-align:center;font-size:20px}
-#descricao{flex:1}
-#cDescricao{flex:1}
-#valor{width:115px;font-weight:800;font-size:15px}
-#cValor{width:115px;font-weight:800;font-size:15px}
-.btn-lancar{width:100%;padding:15px;border:none;border-radius:14px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;cursor:pointer;background:linear-gradient(135deg,#f5d060,#d4af37,#a07820);color:#0a0a0a}
-.btn-lancar:active{transform:scale(0.98)}
-
-/* LISTA */
+.inp-emoji{width:52px;text-align:center;font-size:20px}
+.inp-desc{flex:1;min-width:120px}
+.inp-valor{width:110px;font-weight:800}
+.inp-parc{width:80px}
+.btn-lancar{width:100%;padding:15px;border:none;border-radius:14px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;cursor:pointer;background:linear-gradient(135deg,#f5d060,#d4af37,#a07820);color:#0a0a0a;margin-top:4px}
 .lista-titulo{font-size:10px;letter-spacing:3px;color:#3a3020;text-transform:uppercase;font-weight:600;margin:24px 0 12px;padding-left:4px}
 .lista{display:flex;flex-direction:column;gap:8px}
 .item{background:#0f0f0f;padding:14px 16px;border-radius:14px;display:flex;align-items:center;gap:12px;border:1px solid #1a1a1a}
 .item.entrada{border-left:3px solid #22c97a}
 .item.saida{border-left:3px solid #e25c5c}
 .item.cartao{border-left:3px solid #d4af37}
+.item.fixa{border-left:3px solid #a855f7}
 .item.confirmar{background:#1a0505;border-color:#3a0a0a}
 .item-emoji{font-size:22px;width:32px;text-align:center}
 .item-info{flex:1}
 .item-desc{font-size:14px;font-weight:700;color:#e8d5a0}
-.item-data{font-size:11px;color:#2a2010;margin-top:3px;letter-spacing:1px}
-.item-valor{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#e25c5c}
-.item-valor.entrada{color:#22c97a}
+.item-sub{font-size:11px;color:#2a2010;margin-top:3px;letter-spacing:0.5px}
+.item-valor{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#e25c5c;white-space:nowrap}
+.item-valor.verde{color:#22c97a}
 .btn-del{background:#1a1a1a;border:none;color:#333;width:30px;height:30px;border-radius:8px;font-size:15px;cursor:pointer;flex-shrink:0}
 .btn-del.confirmar{background:#3a0a0a;color:#e25c5c}
 .vazio{text-align:center;color:#2a2010;padding:40px 0;font-size:14px;letter-spacing:1px}
-
-/* ASSINATURA */
+.total-fixas{background:#0f0f0f;border:1px solid #2a1a4a;border-radius:14px;padding:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
+.total-fixas-label{font-size:11px;letter-spacing:2px;color:#6a3a9a;text-transform:uppercase;font-weight:600}
+.total-fixas-valor{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#a855f7}
 .assinatura{text-align:center;padding:40px 0 10px}
 .assinatura-linha{font-size:10px;letter-spacing:3px;color:#2a2010;text-transform:uppercase;margin-bottom:4px}
 .assinatura-nome{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:4px;background:linear-gradient(135deg,#f5d060,#d4af37,#a07820);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -98,6 +82,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
 <div class="abas">
   <div class="aba ativa" onclick="trocarAba('conta')">💰 CONTA</div>
   <div class="aba" onclick="trocarAba('cartao')">💳 CARTÃO</div>
+  <div class="aba" onclick="trocarAba('fixas')">📌 FIXAS</div>
 </div>
 
 <!-- ABA CONTA -->
@@ -128,9 +113,9 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
       <button id="btnSaida" onclick="setTipo('saida')">↓ Saída</button>
     </div>
     <div class="campos">
-      <input type="text" id="emoji" placeholder="😋" maxlength="2">
-      <input type="text" id="descricao" placeholder="O que foi?">
-      <input type="number" id="valor" placeholder="0,00" step="0.01">
+      <input type="text" id="emoji" class="inp-emoji" placeholder="😋" maxlength="2">
+      <input type="text" id="descricao" class="inp-desc" placeholder="O que foi?">
+      <input type="number" id="valor" class="inp-valor" placeholder="0,00" step="0.01">
     </div>
     <button class="btn-lancar" onclick="lancar()">LANÇAR</button>
   </div>
@@ -175,14 +160,44 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
   </div>
   <div class="form-box">
     <div class="campos">
-      <input type="text" id="cEmoji" placeholder="🛒" maxlength="2">
-      <input type="text" id="cDescricao" placeholder="O que comprou?">
-      <input type="number" id="cValor" placeholder="0,00" step="0.01">
+      <input type="text" id="cEmoji" class="inp-emoji" placeholder="🛒" maxlength="2">
+      <input type="text" id="cDescricao" class="inp-desc" placeholder="O que comprou?">
+      <input type="number" id="cValor" class="inp-valor" placeholder="0,00" step="0.01">
+      <input type="number" id="cParcelas" class="inp-parc" placeholder="1x">
     </div>
     <button class="btn-lancar" onclick="lancarCartao()">LANÇAR COMPRA</button>
   </div>
   <div class="lista-titulo">Compras no cartão</div>
   <div class="lista" id="cLista"></div>
+  <div class="assinatura">
+    <div class="assinatura-linha">feito por</div>
+    <div class="assinatura-nome">Gustavo Dantas</div>
+  </div>
+</div>
+</div>
+
+<!-- ABA FIXAS -->
+<div class="tela" id="tela-fixas">
+<div class="container">
+  <div class="topo-titulo">Despesas Fixas</div>
+  <div class="total-fixas">
+    <div class="total-fixas-label">Total por mês</div>
+    <div class="total-fixas-valor" id="fTotal">R$ 0,00</div>
+  </div>
+  <div class="form-box">
+    <div class="campos">
+      <input type="text" id="fEmoji" class="inp-emoji" placeholder="📱" maxlength="2">
+      <input type="text" id="fDescricao" class="inp-desc" placeholder="Ex: Financiamento moto">
+      <input type="number" id="fValor" class="inp-valor" placeholder="Valor" step="0.01">
+    </div>
+    <div class="campos">
+      <input type="number" id="fParcelas" class="inp-desc" placeholder="Total de parcelas (0 = fixo)" step="1" min="0">
+      <input type="number" id="fPagas" class="inp-valor" placeholder="Já pagas" step="1" min="0">
+    </div>
+    <button class="btn-lancar" onclick="lancarFixa()">ADICIONAR</button>
+  </div>
+  <div class="lista-titulo">Suas despesas fixas</div>
+  <div class="lista" id="fLista"></div>
   <div class="assinatura">
     <div class="assinatura-linha">feito por</div>
     <div class="assinatura-nome">Gustavo Dantas</div>
@@ -226,8 +241,8 @@ function atualizarConta(){
   l.innerHTML=itens.map(i=>`
     <div class="item ${i.tipo} ${i.del?'confirmar':''}">
       <div class="item-emoji">${i.emoji}</div>
-      <div class="item-info"><div class="item-desc">${i.desc}</div><div class="item-data">${i.data}</div></div>
-      <div class="item-valor ${i.tipo}">${i.tipo==='entrada'?'+':'-'} R$${i.valor.toFixed(2)}</div>
+      <div class="item-info"><div class="item-desc">${i.desc}</div><div class="item-sub">${i.data}</div></div>
+      <div class="item-valor ${i.tipo==='entrada'?'verde':''}">${i.tipo==='entrada'?'+':'-'} R$${i.valor.toFixed(2)}</div>
       <button class="btn-del ${i.del?'confirmar':''}" onclick="deletar(${i.id})">${i.del?'✓':'×'}</button>
     </div>`).join('');
 }
@@ -241,12 +256,14 @@ function lancarCartao(){
   const e=document.getElementById('cEmoji').value||'🛒';
   const d=document.getElementById('cDescricao').value.trim();
   const v=parseFloat(document.getElementById('cValor').value);
+  const p=parseInt(document.getElementById('cParcelas').value)||1;
   if(!d||!v||v<=0)return;
-  compras.unshift({id:Date.now(),emoji:e,desc:d,valor:v,data:new Date().toLocaleDateString('pt-BR'),del:false});
+  compras.unshift({id:Date.now(),emoji:e,desc:d,valor:v,parcelas:p,data:new Date().toLocaleDateString('pt-BR'),del:false});
   salvarCartao();atualizarCartao();
   document.getElementById('cEmoji').value='';
   document.getElementById('cDescricao').value='';
   document.getElementById('cValor').value='';
+  document.getElementById('cParcelas').value='';
 }
 function deletarCartao(id){
   const item=compras.find(i=>i.id===id);
@@ -269,17 +286,78 @@ function atualizarCartao(){
   l.innerHTML=compras.map(i=>`
     <div class="item cartao ${i.del?'confirmar':''}">
       <div class="item-emoji">${i.emoji}</div>
-      <div class="item-info"><div class="item-desc">${i.desc}</div><div class="item-data">${i.data}</div></div>
+      <div class="item-info">
+        <div class="item-desc">${i.desc}</div>
+        <div class="item-sub">${i.parcelas>1?i.parcelas+'x de R$'+(i.valor/i.parcelas).toFixed(2)+' · ':''} ${i.data}</div>
+      </div>
       <div class="item-valor">- R$${i.valor.toFixed(2)}</div>
       <button class="btn-del ${i.del?'confirmar':''}" onclick="deletarCartao(${i.id})">${i.del?'✓':'×'}</button>
     </div>`).join('');
 }
 
+// DESPESAS FIXAS
+let fixas=[];
+function salvarFixas(){localStorage.setItem('mc4',JSON.stringify({fixas}))}
+function carregarFixas(){try{const d=localStorage.getItem('mc4');if(d){const p=JSON.parse(d);fixas=p.fixas}}catch(e){}atualizarFixas()}
+function lancarFixa(){
+  const e=document.getElementById('fEmoji').value||'📌';
+  const d=document.getElementById('fDescricao').value.trim();
+  const v=parseFloat(document.getElementById('fValor').value);
+  const total=parseInt(document.getElementById('fParcelas').value)||0;
+  const pagas=parseInt(document.getElementById('fPagas').value)||0;
+  if(!d||!v||v<=0)return;
+  fixas.push({id:Date.now(),emoji:e,desc:d,valor:v,total,pagas,del:false});
+  salvarFixas();atualizarFixas();
+  document.getElementById('fEmoji').value='';
+  document.getElementById('fDescricao').value='';
+  document.getElementById('fValor').value='';
+  document.getElementById('fParcelas').value='';
+  document.getElementById('fPagas').value='';
+}
+function pagarFixa(id){
+  const item=fixas.find(i=>i.id===id);
+  if(item&&item.total>0&&item.pagas<item.total){item.pagas++;salvarFixas();atualizarFixas();}
+}
+function deletarFixa(id){
+  const item=fixas.find(i=>i.id===id);
+  if(!item.del){item.del=true}
+  else{fixas=fixas.filter(i=>i.id!==id)}
+  salvarFixas();atualizarFixas();
+}
+function atualizarFixas(){
+  const total=fixas.reduce((s,i)=>s+i.valor,0);
+  document.getElementById('fTotal').textContent='R$ '+total.toFixed(2);
+  const l=document.getElementById('fLista');
+  if(!fixas.length){l.innerHTML='<div class="vazio">NENHUMA DESPESA FIXA AINDA 👆</div>';return}
+  l.innerHTML=fixas.map(i=>{
+    const faltam=i.total>0?i.total-i.pagas:null;
+    const sub=i.total>0
+      ?`${i.pagas}/${i.total} pagas · ${faltam} faltando · ${(faltam*i.valor).toFixed(2)} restante`
+      :'Despesa fixa mensal';
+    const pct=i.total>0?Math.min((i.pagas/i.total)*100,100):100;
+    return `<div class="item fixa ${i.del?'confirmar':''}">
+      <div class="item-emoji">${i.emoji}</div>
+      <div class="item-info">
+        <div class="item-desc">${i.desc}</div>
+        <div class="item-sub">${sub}</div>
+        ${i.total>0?`<div style="background:#1a1a1a;border-radius:4px;height:4px;margin-top:6px"><div style="background:#a855f7;height:4px;border-radius:4px;width:${pct}%"></div></div>`:''}
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+        <div class="item-valor" style="color:#a855f7">R$${i.valor.toFixed(2)}</div>
+        ${i.total>0&&i.pagas<i.total?`<button onclick="pagarFixa(${i.id})" style="background:#1a0a2a;border:1px solid #a855f7;color:#a855f7;border-radius:6px;padding:3px 8px;font-size:11px;cursor:pointer;font-weight:700">PAGAR</button>`:''}
+      </div>
+      <button class="btn-del ${i.del?'confirmar':''}" onclick="deletarFixa(${i.id})">${i.del?'✓':'×'}</button>
+    </div>`;
+  }).join('');
+}
+
 // ABAS
 function trocarAba(aba){
-  document.querySelectorAll('.aba').forEach((a,i)=>a.classList.toggle('ativa',i===(aba==='conta'?0:1)));
-  document.getElementById('tela-conta').classList.toggle('ativa',aba==='conta');
-  document.getElementById('tela-cartao').classList.toggle('ativa',aba==='cartao');
+  const abas=['conta','cartao','fixas'];
+  abas.forEach((a,i)=>{
+    document.querySelectorAll('.aba')[i].classList.toggle('ativa',a===aba);
+    document.getElementById('tela-'+a).classList.toggle('ativa',a===aba);
+  });
 }
 
 if('serviceWorker' in navigator){
@@ -287,6 +365,7 @@ if('serviceWorker' in navigator){
 }
 carregarConta();
 carregarCartao();
+carregarFixas();
 </script>
 </body>
 </html>
