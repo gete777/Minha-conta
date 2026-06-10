@@ -9,33 +9,16 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padding:20px 16px 40px}
 .container{max-width:500px;margin:0 auto}
-
 .topo{text-align:center;padding:24px 0 20px}
 .topo-titulo{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#8a7040;text-transform:uppercase;margin-bottom:6px}
-
-.saldo-box{
-  background:#0f0f0f;
-  border:1px solid #2a2200;
-  border-radius:20px;
-  padding:32px 24px 28px;
-  text-align:center;
-  margin-bottom:20px;
-  cursor:pointer;
-  position:relative;
-  overflow:hidden;
-}
-.saldo-box::before{
-  content:'';
-  position:absolute;
-  top:-60px;left:50%;transform:translateX(-50%);
-  width:300px;height:160px;
-  background:radial-gradient(ellipse,rgba(212,175,55,0.12) 0%,transparent 70%);
-  pointer-events:none;
-}
-.saldo-label{font-size:11px;letter-spacing:3px;color:#5a4a20;text-transform:uppercase;margin-bottom:12px;font-weight:600}
-.saldo-valor{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:2px;background:linear-gradient(135deg,#f5d060,#d4af37,#a07820);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
-.saldo-hint{font-size:10px;color:#3a3020;margin-top:8px;letter-spacing:1px}
-
+.saldo-box{background:#0f0f0f;border:1px solid #2a2200;border-radius:20px;padding:28px 24px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden}
+.saldo-box::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:160px;background:radial-gradient(ellipse,rgba(212,175,55,0.12) 0%,transparent 70%);pointer-events:none}
+.saldo-label{font-size:11px;letter-spacing:3px;color:#5a4a20;text-transform:uppercase;margin-bottom:10px;font-weight:600}
+.saldo-valor{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:2px;background:linear-gradient(135deg,#f5d060,#d4af37,#a07820);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:12px}
+.saldo-editar{display:flex;gap:8px;align-items:center;justify-content:center}
+.saldo-editar input{background:#0a0a0a;border:1px solid #2a2000;color:#e8d5a0;padding:10px 14px;border-radius:10px;font-size:16px;font-weight:800;width:160px;text-align:center;font-family:'Inter',sans-serif}
+.saldo-editar input:focus{outline:none;border-color:#d4af37}
+.saldo-editar button{background:linear-gradient(135deg,#f5d060,#d4af37);color:#0a0a0a;border:none;border-radius:10px;padding:10px 16px;font-weight:800;font-size:13px;cursor:pointer}
 .resumo{display:flex;gap:12px;margin-bottom:20px}
 .resumo-card{flex:1;background:#0f0f0f;border-radius:14px;padding:14px;text-align:center;border:1px solid #1a1a1a}
 .resumo-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:600}
@@ -44,46 +27,23 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
 .resumo-card.verde .resumo-valor{color:#22c97a}
 .resumo-card.vermelho .resumo-label{color:#5c1a1a}
 .resumo-card.vermelho .resumo-valor{color:#e25c5c}
-
 .form-box{background:#0f0f0f;border:1px solid #1e1800;border-radius:20px;padding:20px;margin-bottom:20px}
-
 .tipo-btns{display:flex;gap:8px;margin-bottom:16px}
-.tipo-btns button{
-  flex:1;padding:13px;border:1px solid #1a1a1a;border-radius:12px;
-  font-size:13px;font-weight:800;cursor:pointer;letter-spacing:1px;
-  background:#0a0a0a;color:#333;transition:all 0.2s;text-transform:uppercase;
-}
+.tipo-btns button{flex:1;padding:13px;border:1px solid #1a1a1a;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;letter-spacing:1px;background:#0a0a0a;color:#333;transition:all 0.2s;text-transform:uppercase}
 .tipo-btns button.active-entrada{background:#0a2a1a;border-color:#22c97a;color:#22c97a}
 .tipo-btns button.active-saida{background:#2a0a0a;border-color:#e25c5c;color:#e25c5c}
-
 .campos{display:flex;gap:8px;margin-bottom:12px}
-.campos input{
-  background:#0a0a0a;border:1px solid #1e1800;color:#e8d5a0;
-  padding:13px 12px;border-radius:12px;font-size:14px;font-family:'Inter',sans-serif;
-}
+.campos input{background:#0a0a0a;border:1px solid #1e1800;color:#e8d5a0;padding:13px 12px;border-radius:12px;font-size:14px;font-family:'Inter',sans-serif}
 .campos input::placeholder{color:#2a2010}
 .campos input:focus{outline:none;border-color:#d4af37}
 #emoji{width:52px;text-align:center;font-size:20px}
 #descricao{flex:1}
 #valor{width:115px;font-weight:800;font-size:15px}
-
-.btn-lancar{
-  width:100%;padding:15px;border:none;border-radius:14px;
-  font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;
-  cursor:pointer;transition:all 0.2s;
-  background:linear-gradient(135deg,#f5d060,#d4af37,#a07820);
-  color:#0a0a0a;
-}
+.btn-lancar{width:100%;padding:15px;border:none;border-radius:14px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;cursor:pointer;transition:all 0.2s;background:linear-gradient(135deg,#f5d060,#d4af37,#a07820);color:#0a0a0a}
 .btn-lancar:active{transform:scale(0.98)}
-
 .lista-titulo{font-size:10px;letter-spacing:3px;color:#3a3020;text-transform:uppercase;font-weight:600;margin:24px 0 12px;padding-left:4px}
-
 .lista{display:flex;flex-direction:column;gap:8px}
-.item{
-  background:#0f0f0f;padding:14px 16px;border-radius:14px;
-  display:flex;align-items:center;gap:12px;
-  border:1px solid #1a1a1a;transition:all 0.2s;
-}
+.item{background:#0f0f0f;padding:14px 16px;border-radius:14px;display:flex;align-items:center;gap:12px;border:1px solid #1a1a1a;transition:all 0.2s}
 .item.entrada{border-left:3px solid #22c97a}
 .item.saida{border-left:3px solid #e25c5c}
 .item.confirmar{background:#1a0505;border-color:#3a0a0a}
@@ -96,9 +56,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
 .item-valor.saida{color:#e25c5c}
 .btn-del{background:#1a1a1a;border:none;color:#333;width:30px;height:30px;border-radius:8px;font-size:15px;cursor:pointer;flex-shrink:0;transition:all 0.2s}
 .btn-del.confirmar{background:#3a0a0a;color:#e25c5c}
-
 .vazio{text-align:center;color:#2a2010;padding:40px 0;font-size:14px;letter-spacing:1px}
-
 .assinatura{text-align:center;padding:40px 0 10px}
 .assinatura-linha{font-size:10px;letter-spacing:3px;color:#2a2010;text-transform:uppercase;margin-bottom:4px}
 .assinatura-nome{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:4px;background:linear-gradient(135deg,#f5d060,#d4af37,#a07820);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -106,17 +64,17 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
 </head>
 <body>
 <div class="container">
-
   <div class="topo">
     <div class="topo-titulo">💰 Controle Financeiro</div>
   </div>
-
-  <div class="saldo-box" onclick="ajustarSaldo()">
+  <div class="saldo-box">
     <div class="saldo-label">Saldo atual</div>
     <div class="saldo-valor" id="saldo">R$ 0,00</div>
-    <div class="saldo-hint">TOQUE PARA AJUSTAR</div>
+    <div class="saldo-editar">
+      <input type="number" id="novoSaldo" placeholder="Ajustar saldo" step="0.01">
+      <button onclick="ajustarSaldo()">OK</button>
+    </div>
   </div>
-
   <div class="resumo">
     <div class="resumo-card verde">
       <div class="resumo-label">Entrou</div>
@@ -127,7 +85,6 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
       <div class="resumo-valor" id="totalSaida">R$ 0</div>
     </div>
   </div>
-
   <div class="form-box">
     <div class="tipo-btns">
       <button id="btnEntrada" class="active-entrada" onclick="setTipo('entrada')">↑ Entrada</button>
@@ -140,25 +97,54 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
     </div>
     <button class="btn-lancar" onclick="lancar()">LANÇAR</button>
   </div>
-
   <div class="lista-titulo">Movimentações</div>
   <div class="lista" id="lista"></div>
-
   <div class="assinatura">
     <div class="assinatura-linha">feito por</div>
     <div class="assinatura-nome">Gustavo Dantas</div>
   </div>
-
 </div>
 <script>
 let tipo='entrada',saldo=0,itens=[];
-function salvar(){localStorage.setItem('mc',JSON.stringify({saldo,itens}))}
-function carregar(){const d=localStorage.getItem('mc');if(d){const p=JSON.parse(d);saldo=p.saldo;itens=p.itens}atualizar()}
-function setTipo(t){
-  tipo=t;
-  document.getElementById('btnEntrada').className=t==='entrada'?'active-entrada':'';
-  document.getElementById('btnSaida').className=t==='saida'?'active-saida':'';
+function salvar(){localStorage.setItem('mc2',JSON.stringify({saldo,itens}))}
+function carregar(){try{const d=localStorage.getItem('mc2');if(d){const p=JSON.parse(d);saldo=p.saldo;itens=p.itens}}catch(e){}atualizar()}
+function setTipo(t){tipo=t;document.getElementById('btnEntrada').className=t==='entrada'?'active-entrada':'';document.getElementById('btnSaida').className=t==='saida'?'active-saida':''}
+function ajustarSaldo(){const v=parseFloat(document.getElementById('novoSaldo').value);if(!isNaN(v)){saldo=v;document.getElementById('novoSaldo').value='';salvar();atualizar()}}
+function lancar(){
+  const e=document.getElementById('emoji').value||'💰';
+  const d=document.getElementById('descricao').value.trim();
+  const v=parseFloat(document.getElementById('valor').value);
+  if(!d||!v||v<=0)return;
+  itens.unshift({id:Date.now(),tipo,emoji:e,desc:d,valor:v,data:new Date().toLocaleDateString('pt-BR'),del:false});
+  saldo+=tipo==='entrada'?v:-v;
+  salvar();atualizar();
+  document.getElementById('emoji').value='';
+  document.getElementById('descricao').value='';
+  document.getElementById('valor').value='';
 }
-function ajustarSaldo(){
-  const v=prompt('Qual o saldo atual da sua conta?',saldo.toFixed(2));
-  if(v!==null&&!
+function deletar(id){
+  const item=itens.find(i=>i.id===id);
+  if(!item.del){item.del=true}
+  else{saldo+=item.tipo==='entrada'?-item.valor:item.valor;itens=itens.filter(i=>i.id!==id)}
+  salvar();atualizar();
+}
+function atualizar(){
+  const totalE=itens.filter(i=>i.tipo==='entrada').reduce((s,i)=>s+i.valor,0);
+  const totalS=itens.filter(i=>i.tipo==='saida').reduce((s,i)=>s+i.valor,0);
+  document.getElementById('saldo').textContent='R$ '+saldo.toFixed(2);
+  document.getElementById('totalEntrada').textContent='R$ '+totalE.toFixed(0);
+  document.getElementById('totalSaida').textContent='R$ '+totalS.toFixed(0);
+  const l=document.getElementById('lista');
+  if(!itens.length){l.innerHTML='<div class="vazio">NENHUM LANÇAMENTO AINDA<br>LANCE O PRIMEIRO ACIMA 👆</div>';return}
+  l.innerHTML=itens.map(i=>`
+    <div class="item ${i.tipo} ${i.del?'confirmar':''}">
+      <div class="item-emoji">${i.emoji}</div>
+      <div class="item-info"><div class="item-desc">${i.desc}</div><div class="item-data">${i.data}</div></div>
+      <div class="item-valor ${i.tipo}">${i.tipo==='entrada'?'+':'-'} R$${i.valor.toFixed(2)}</div>
+      <button class="btn-del ${i.del?'confirmar':''}" onclick="deletar(${i.id})">${i.del?'✓':'×'}</button>
+    </div>`).join('');
+}
+carregar();
+</script>
+</body>
+</html>
