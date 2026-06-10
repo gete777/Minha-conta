@@ -7,10 +7,10 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padding:0 0 40px}
+body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padding:0 0 40px;overflow-x:hidden}
 .container{max-width:500px;margin:0 auto;padding:0 16px}
-.abas{display:flex;background:#0f0f0f;border-bottom:1px solid #1a1a00;position:sticky;top:0;z-index:99}
-.aba{flex:1;padding:14px 4px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;color:#333;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s}
+.abas{display:flex;background:#0f0f0f;border-bottom:1px solid #1a1a00;position:sticky;top:0;z-index:99;overflow-x:auto;scroll-behavior:smooth}
+.aba{flex-shrink:0;padding:14px 12px;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:#333;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap}
 .aba.ativa{color:#d4af37;border-bottom-color:#d4af37}
 .tela{display:none;padding-top:20px}
 .tela.ativa{display:block}
@@ -33,6 +33,8 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
 .resumo-card.vermelho .resumo-valor{color:#e25c5c}
 .resumo-card.amarelo .resumo-label{color:#5a4a00}
 .resumo-card.amarelo .resumo-valor{color:#d4af37}
+.resumo-card.roxo .resumo-label{color:#3a0a4a}
+.resumo-card.roxo .resumo-valor{color:#a855f7}
 .barra-box{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:14px;padding:16px;margin-bottom:20px}
 .barra-label{font-size:10px;letter-spacing:2px;color:#3a3020;text-transform:uppercase;font-weight:600;margin-bottom:10px}
 .barra-bg{background:#1a1a1a;border-radius:6px;height:10px}
@@ -59,6 +61,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
 .item.saida{border-left:3px solid #e25c5c}
 .item.cartao{border-left:3px solid #d4af37}
 .item.fixa{border-left:3px solid #a855f7}
+.item.variavel{border-left:3px solid #06b6d4}
 .item.confirmar{background:#1a0505;border-color:#3a0a0a}
 .item-emoji{font-size:22px;width:32px;text-align:center}
 .item-info{flex:1}
@@ -69,9 +72,15 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
 .btn-del{background:#1a1a1a;border:none;color:#333;width:30px;height:30px;border-radius:8px;font-size:15px;cursor:pointer;flex-shrink:0}
 .btn-del.confirmar{background:#3a0a0a;color:#e25c5c}
 .vazio{text-align:center;color:#2a2010;padding:40px 0;font-size:14px;letter-spacing:1px}
-.total-fixas{background:#0f0f0f;border:1px solid #2a1a4a;border-radius:14px;padding:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
-.total-fixas-label{font-size:11px;letter-spacing:2px;color:#6a3a9a;text-transform:uppercase;font-weight:600}
-.total-fixas-valor{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#a855f7}
+.total-box{background:#0f0f0f;border:1px solid #2a1a4a;border-radius:14px;padding:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
+.total-box.roxo{border-color:#2a1a4a}
+.total-box.roxo .total-label{color:#6a3a9a}
+.total-box.roxo .total-valor{color:#a855f7}
+.total-box.ciano{border-color:#1a2a3a}
+.total-box.ciano .total-label{color:#3a6a8a}
+.total-box.ciano .total-valor{color:#06b6d4}
+.total-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.total-valor{font-family:'Bebas Neue',sans-serif;font-size:28px}
 .assinatura{text-align:center;padding:40px 0 10px}
 .assinatura-linha{font-size:10px;letter-spacing:3px;color:#2a2010;text-transform:uppercase;margin-bottom:4px}
 .assinatura-nome{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:4px;background:linear-gradient(135deg,#f5d060,#d4af37,#a07820);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -83,6 +92,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
   <div class="aba ativa" onclick="trocarAba('conta')">💰 CONTA</div>
   <div class="aba" onclick="trocarAba('cartao')">💳 CARTÃO</div>
   <div class="aba" onclick="trocarAba('fixas')">📌 FIXAS</div>
+  <div class="aba" onclick="trocarAba('variavel')">📊 VARIÁVEL</div>
 </div>
 
 <!-- ABA CONTA -->
@@ -150,222 +160,4 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#fff;padd
       <div class="resumo-valor" id="cUsado">R$ 0</div>
     </div>
   </div>
-  <div class="barra-box">
-    <div class="barra-label">Limite utilizado</div>
-    <div class="barra-bg"><div class="barra-fill" id="cBarra" style="width:0%"></div></div>
-    <div class="barra-info">
-      <span id="cPct">0% usado</span>
-      <span id="cRestante">R$ 0,00 livre</span>
-    </div>
-  </div>
-  <div class="form-box">
-    <div class="campos">
-      <input type="text" id="cEmoji" class="inp-emoji" placeholder="🛒" maxlength="2">
-      <input type="text" id="cDescricao" class="inp-desc" placeholder="O que comprou?">
-      <input type="number" id="cValor" class="inp-valor" placeholder="0,00" step="0.01">
-      <input type="number" id="cParcelas" class="inp-parc" placeholder="1x">
-    </div>
-    <button class="btn-lancar" onclick="lancarCartao()">LANÇAR COMPRA</button>
-  </div>
-  <div class="lista-titulo">Compras no cartão</div>
-  <div class="lista" id="cLista"></div>
-  <div class="assinatura">
-    <div class="assinatura-linha">feito por</div>
-    <div class="assinatura-nome">Gustavo Dantas</div>
-  </div>
-</div>
-</div>
-
-<!-- ABA FIXAS -->
-<div class="tela" id="tela-fixas">
-<div class="container">
-  <div class="topo-titulo">Despesas Fixas</div>
-  <div class="total-fixas">
-    <div class="total-fixas-label">Total por mês</div>
-    <div class="total-fixas-valor" id="fTotal">R$ 0,00</div>
-  </div>
-  <div class="form-box">
-    <div class="campos">
-      <input type="text" id="fEmoji" class="inp-emoji" placeholder="📱" maxlength="2">
-      <input type="text" id="fDescricao" class="inp-desc" placeholder="Ex: Financiamento moto">
-      <input type="number" id="fValor" class="inp-valor" placeholder="Valor" step="0.01">
-    </div>
-    <div class="campos">
-      <input type="number" id="fParcelas" class="inp-desc" placeholder="Total de parcelas (0 = fixo)" step="1" min="0">
-      <input type="number" id="fPagas" class="inp-valor" placeholder="Já pagas" step="1" min="0">
-    </div>
-    <button class="btn-lancar" onclick="lancarFixa()">ADICIONAR</button>
-  </div>
-  <div class="lista-titulo">Suas despesas fixas</div>
-  <div class="lista" id="fLista"></div>
-  <div class="assinatura">
-    <div class="assinatura-linha">feito por</div>
-    <div class="assinatura-nome">Gustavo Dantas</div>
-  </div>
-</div>
-</div>
-
-<script>
-// CONTA
-let tipo='entrada',saldo=0,itens=[];
-function salvarConta(){localStorage.setItem('mc2',JSON.stringify({saldo,itens}))}
-function carregarConta(){try{const d=localStorage.getItem('mc2');if(d){const p=JSON.parse(d);saldo=p.saldo;itens=p.itens}}catch(e){}atualizarConta()}
-function setTipo(t){tipo=t;document.getElementById('btnEntrada').className=t==='entrada'?'active-entrada':'';document.getElementById('btnSaida').className=t==='saida'?'active-saida':''}
-function ajustarSaldo(){const v=parseFloat(document.getElementById('novoSaldo').value);if(!isNaN(v)){saldo=v;document.getElementById('novoSaldo').value='';salvarConta();atualizarConta()}}
-function lancar(){
-  const e=document.getElementById('emoji').value||'💰';
-  const d=document.getElementById('descricao').value.trim();
-  const v=parseFloat(document.getElementById('valor').value);
-  if(!d||!v||v<=0)return;
-  itens.unshift({id:Date.now(),tipo,emoji:e,desc:d,valor:v,data:new Date().toLocaleDateString('pt-BR'),del:false});
-  saldo+=tipo==='entrada'?v:-v;
-  salvarConta();atualizarConta();
-  document.getElementById('emoji').value='';
-  document.getElementById('descricao').value='';
-  document.getElementById('valor').value='';
-}
-function deletar(id){
-  const item=itens.find(i=>i.id===id);
-  if(!item.del){item.del=true}
-  else{saldo+=item.tipo==='entrada'?-item.valor:item.valor;itens=itens.filter(i=>i.id!==id)}
-  salvarConta();atualizarConta();
-}
-function atualizarConta(){
-  const totalE=itens.filter(i=>i.tipo==='entrada').reduce((s,i)=>s+i.valor,0);
-  const totalS=itens.filter(i=>i.tipo==='saida').reduce((s,i)=>s+i.valor,0);
-  document.getElementById('saldo').textContent='R$ '+saldo.toFixed(2);
-  document.getElementById('totalEntrada').textContent='R$ '+totalE.toFixed(0);
-  document.getElementById('totalSaida').textContent='R$ '+totalS.toFixed(0);
-  const l=document.getElementById('lista');
-  if(!itens.length){l.innerHTML='<div class="vazio">NENHUM LANÇAMENTO AINDA 👆</div>';return}
-  l.innerHTML=itens.map(i=>`
-    <div class="item ${i.tipo} ${i.del?'confirmar':''}">
-      <div class="item-emoji">${i.emoji}</div>
-      <div class="item-info"><div class="item-desc">${i.desc}</div><div class="item-sub">${i.data}</div></div>
-      <div class="item-valor ${i.tipo==='entrada'?'verde':''}">${i.tipo==='entrada'?'+':'-'} R$${i.valor.toFixed(2)}</div>
-      <button class="btn-del ${i.del?'confirmar':''}" onclick="deletar(${i.id})">${i.del?'✓':'×'}</button>
-    </div>`).join('');
-}
-
-// CARTÃO
-let limite=0,compras=[];
-function salvarCartao(){localStorage.setItem('mc3',JSON.stringify({limite,compras}))}
-function carregarCartao(){try{const d=localStorage.getItem('mc3');if(d){const p=JSON.parse(d);limite=p.limite;compras=p.compras}}catch(e){}atualizarCartao()}
-function ajustarLimite(){const v=parseFloat(document.getElementById('cLimite').value);if(!isNaN(v)&&v>0){limite=v;document.getElementById('cLimite').value='';salvarCartao();atualizarCartao()}}
-function lancarCartao(){
-  const e=document.getElementById('cEmoji').value||'🛒';
-  const d=document.getElementById('cDescricao').value.trim();
-  const v=parseFloat(document.getElementById('cValor').value);
-  const p=parseInt(document.getElementById('cParcelas').value)||1;
-  if(!d||!v||v<=0)return;
-  compras.unshift({id:Date.now(),emoji:e,desc:d,valor:v,parcelas:p,data:new Date().toLocaleDateString('pt-BR'),del:false});
-  salvarCartao();atualizarCartao();
-  document.getElementById('cEmoji').value='';
-  document.getElementById('cDescricao').value='';
-  document.getElementById('cValor').value='';
-  document.getElementById('cParcelas').value='';
-}
-function deletarCartao(id){
-  const item=compras.find(i=>i.id===id);
-  if(!item.del){item.del=true}
-  else{compras=compras.filter(i=>i.id!==id)}
-  salvarCartao();atualizarCartao();
-}
-function atualizarCartao(){
-  const usado=compras.reduce((s,i)=>s+i.valor,0);
-  const disponivel=limite-usado;
-  const pct=limite>0?Math.min((usado/limite)*100,100):0;
-  document.getElementById('cDisponivel').textContent='R$ '+disponivel.toFixed(2);
-  document.getElementById('cLimiteTotal').textContent='R$ '+limite.toFixed(0);
-  document.getElementById('cUsado').textContent='R$ '+usado.toFixed(0);
-  document.getElementById('cBarra').style.width=pct+'%';
-  document.getElementById('cPct').textContent=pct.toFixed(0)+'% usado';
-  document.getElementById('cRestante').textContent='R$ '+disponivel.toFixed(2)+' livre';
-  const l=document.getElementById('cLista');
-  if(!compras.length){l.innerHTML='<div class="vazio">NENHUMA COMPRA AINDA 👆</div>';return}
-  l.innerHTML=compras.map(i=>`
-    <div class="item cartao ${i.del?'confirmar':''}">
-      <div class="item-emoji">${i.emoji}</div>
-      <div class="item-info">
-        <div class="item-desc">${i.desc}</div>
-        <div class="item-sub">${i.parcelas>1?i.parcelas+'x de R$'+(i.valor/i.parcelas).toFixed(2)+' · ':''} ${i.data}</div>
-      </div>
-      <div class="item-valor">- R$${i.valor.toFixed(2)}</div>
-      <button class="btn-del ${i.del?'confirmar':''}" onclick="deletarCartao(${i.id})">${i.del?'✓':'×'}</button>
-    </div>`).join('');
-}
-
-// DESPESAS FIXAS
-let fixas=[];
-function salvarFixas(){localStorage.setItem('mc4',JSON.stringify({fixas}))}
-function carregarFixas(){try{const d=localStorage.getItem('mc4');if(d){const p=JSON.parse(d);fixas=p.fixas}}catch(e){}atualizarFixas()}
-function lancarFixa(){
-  const e=document.getElementById('fEmoji').value||'📌';
-  const d=document.getElementById('fDescricao').value.trim();
-  const v=parseFloat(document.getElementById('fValor').value);
-  const total=parseInt(document.getElementById('fParcelas').value)||0;
-  const pagas=parseInt(document.getElementById('fPagas').value)||0;
-  if(!d||!v||v<=0)return;
-  fixas.push({id:Date.now(),emoji:e,desc:d,valor:v,total,pagas,del:false});
-  salvarFixas();atualizarFixas();
-  document.getElementById('fEmoji').value='';
-  document.getElementById('fDescricao').value='';
-  document.getElementById('fValor').value='';
-  document.getElementById('fParcelas').value='';
-  document.getElementById('fPagas').value='';
-}
-function pagarFixa(id){
-  const item=fixas.find(i=>i.id===id);
-  if(item&&item.total>0&&item.pagas<item.total){item.pagas++;salvarFixas();atualizarFixas();}
-}
-function deletarFixa(id){
-  const item=fixas.find(i=>i.id===id);
-  if(!item.del){item.del=true}
-  else{fixas=fixas.filter(i=>i.id!==id)}
-  salvarFixas();atualizarFixas();
-}
-function atualizarFixas(){
-  const total=fixas.reduce((s,i)=>s+i.valor,0);
-  document.getElementById('fTotal').textContent='R$ '+total.toFixed(2);
-  const l=document.getElementById('fLista');
-  if(!fixas.length){l.innerHTML='<div class="vazio">NENHUMA DESPESA FIXA AINDA 👆</div>';return}
-  l.innerHTML=fixas.map(i=>{
-    const faltam=i.total>0?i.total-i.pagas:null;
-    const sub=i.total>0
-      ?`${i.pagas}/${i.total} pagas · ${faltam} faltando · ${(faltam*i.valor).toFixed(2)} restante`
-      :'Despesa fixa mensal';
-    const pct=i.total>0?Math.min((i.pagas/i.total)*100,100):100;
-    return `<div class="item fixa ${i.del?'confirmar':''}">
-      <div class="item-emoji">${i.emoji}</div>
-      <div class="item-info">
-        <div class="item-desc">${i.desc}</div>
-        <div class="item-sub">${sub}</div>
-        ${i.total>0?`<div style="background:#1a1a1a;border-radius:4px;height:4px;margin-top:6px"><div style="background:#a855f7;height:4px;border-radius:4px;width:${pct}%"></div></div>`:''}
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-        <div class="item-valor" style="color:#a855f7">R$${i.valor.toFixed(2)}</div>
-        ${i.total>0&&i.pagas<i.total?`<button onclick="pagarFixa(${i.id})" style="background:#1a0a2a;border:1px solid #a855f7;color:#a855f7;border-radius:6px;padding:3px 8px;font-size:11px;cursor:pointer;font-weight:700">PAGAR</button>`:''}
-      </div>
-      <button class="btn-del ${i.del?'confirmar':''}" onclick="deletarFixa(${i.id})">${i.del?'✓':'×'}</button>
-    </div>`;
-  }).join('');
-}
-
-// ABAS
-function trocarAba(aba){
-  const abas=['conta','cartao','fixas'];
-  abas.forEach((a,i)=>{
-    document.querySelectorAll('.aba')[i].classList.toggle('ativa',a===aba);
-    document.getElementById('tela-'+a).classList.toggle('ativa',a===aba);
-  });
-}
-
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/Minha-conta/sw.js');
-}
-carregarConta();
-carregarCartao();
-carregarFixas();
-</script>
-</body>
-</html>
+  
