@@ -144,6 +144,9 @@ function atualizar(){
       <button class="btn-del ${i.del?'confirmar':''}" onclick="deletar(${i.id})">${i.del?'✓':'×'}</button>
     </div>`).join('');
 }
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/Minha-conta/sw.js');
+}
 carregar();
 </script>
 </body>
